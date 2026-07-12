@@ -1,0 +1,231 @@
+/* ─────────────────────────────────────────────
+   Connect5 – Game styles
+   ───────────────────────────────────────────── */
+
+/* ── Root ─────────────────────────────────── */
+.game-root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(10, 16, 32);
+}
+
+/* ── Header ───────────────────────────────── */
+.game-header {
+    flex-direction: row;
+    height: 90px;
+    background-color: rgb(14, 22, 44);
+    align-items: center;
+    padding-left: 48px;
+    padding-right: 48px;
+    flex-shrink: 0;
+}
+
+.player-block {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.p2-block {
+    align-items: flex-end;
+}
+
+.player-name {
+    font-size: 20px;
+    -unity-font-style: bold;
+}
+
+.player-score {
+    font-size: 38px;
+    -unity-font-style: bold;
+}
+
+.p1-color { color: rgb(239, 68, 68); }
+.p2-color { color: rgb(255, 212, 0); }
+
+.turn-text {
+    flex: 2;
+    font-size: 20px;
+    color: rgb(220, 225, 245);
+    -unity-text-align: middle-center;
+}
+
+/* ── Board container ──────────────────────── */
+.board-container {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* Blue frame — 12px padding on each side around the 720px grid */
+.board-frame {
+    width: 744px;
+    height: 744px;
+    background-color: rgb(24, 66, 160);
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/*
+   board-inner is the shared coordinate space for the three stacked layers.
+   Cell math: 68px cell + 2px margin each side = 72px per cell.
+   10 cells × 72px = 720px — fills exactly with no remainder.
+*/
+.board-inner {
+    width: 720px;
+    height: 720px;
+    overflow: visible;
+}
+
+/* All three layers share the same 720×720 origin inside board-inner */
+.board-grid,
+.column-overlay,
+.piece-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 720px;
+    height: 720px;
+}
+
+.board-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.column-overlay {
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* piece-overlay: pickingMode set to Ignore in C# so clicks reach column-overlay */
+.piece-overlay {
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* ── Board cells (circles) ────────────────── */
+/*
+   68px + 2px margin on all sides = 72px per cell.
+   10 × 72 = 720px — perfect fit, no stray cell at bottom.
+*/
+.cell {
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    background-color: rgb(5, 11, 26);
+    margin: 2px;
+    transition-property: background-color;
+    transition-duration: 0.08s;
+    flex-shrink: 0;
+}
+
+.cell--p1       { background-color: rgb(239, 68,  68); }
+.cell--p2       { background-color: rgb(255, 212,  0); }
+.cell--win      { background-color: rgb(255, 255, 255); }
+.cell--ghost-p1 { background-color: rgba(239, 68, 68,  0.38); }
+.cell--ghost-p2 { background-color: rgba(255, 212, 0,  0.38); }
+
+/* ── Column-click buttons ─────────────────── */
+.col-btn {
+    flex: 1;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition-property: background-color;
+    transition-duration: 0.08s;
+}
+
+.col-btn:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Victory overlay ──────────────────────── */
+.victory-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    align-items: center;
+    justify-content: center;
+}
+
+.victory-panel {
+    width: 540px;
+    background-color: rgb(14, 22, 44);
+    border-radius: 14px;
+    border-width: 1px;
+    border-color: rgba(60, 100, 200, 0.6);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    flex-direction: column;
+}
+
+.vict-title {
+    font-size: 54px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 8px;
+}
+
+.vict-subtitle {
+    font-size: 22px;
+    color: rgba(200, 210, 245, 0.9);
+    -unity-text-align: middle-center;
+    margin-bottom: 28px;
+    white-space: normal;
+    width: 460px;
+}
+
+.vict-buttons {
+    flex-direction: row;
+}
+
+.vict-btn-primary {
+    width: 210px;
+    height: 56px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    background-color: rgb(190, 40, 40);
+    border-radius: 8px;
+    border-width: 0;
+    margin-left: 8px;
+    margin-right: 8px;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+}
+
+.vict-btn-primary:hover {
+    background-color: rgb(220, 55, 55);
+}
+
+.vict-btn-secondary {
+    width: 210px;
+    height: 56px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    background-color: rgb(16, 28, 64);
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: rgba(50, 90, 160, 0.5);
+    margin-left: 8px;
+    margin-right: 8px;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+}
+
+.vict-btn-secondary:hover {
+    background-color: rgb(26, 50, 110);
+}

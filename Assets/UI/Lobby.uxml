@@ -1,0 +1,120 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="Connect5.uss"/>
+    <Style src="Lobby.uss"/>
+
+    <ui:VisualElement name="lobby-root" class="lobby-root">
+
+        <!-- Left panel: decorative mini-board -->
+        <ui:VisualElement name="left-panel" class="left-panel">
+            <ui:VisualElement name="mini-board" class="mini-board"/>
+        </ui:VisualElement>
+
+        <!-- Vertical divider -->
+        <ui:VisualElement name="divider" class="divider"/>
+
+        <!-- Right panel: title + mode selection -->
+        <ui:VisualElement name="right-panel" class="right-panel">
+
+            <ui:Label name="badge" text="ESTRATEGIA TÁCTICA" class="badge"/>
+            <ui:Label name="title-label" text="CONNECT 5" class="title-label"/>
+            <ui:Label name="tagline" text="Conecta 5 piezas y gana. Un clásico aumentado." class="tagline"/>
+            <ui:VisualElement name="pieces-preview" class="pieces-preview"/>
+
+            <!-- ── Main panel: 3 mode cards ── -->
+            <ui:VisualElement name="panel-main" class="panel-main">
+                <ui:VisualElement name="btn-local" class="mode-card">
+                    <ui:Label text="🎮" class="card-icon"/>
+                    <ui:Label text="Local" class="card-title"/>
+                    <ui:Label text="Dos jugadores, una pantalla" class="card-desc"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="btn-ai" class="mode-card">
+                    <ui:Label text="🤖" class="card-icon"/>
+                    <ui:Label text="vs IA" class="card-title"/>
+                    <ui:Label text="Desafía la inteligencia artificial" class="card-desc"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="btn-online" class="mode-card">
+                    <ui:Label text="🌐" class="card-icon"/>
+                    <ui:Label text="Online" class="card-title"/>
+                    <ui:Label text="Multijugador en línea" class="card-desc"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- ── AI panel: difficulty ── -->
+            <ui:VisualElement name="panel-ai" class="panel-sub hidden">
+                <ui:Label text="Selecciona dificultad" class="sub-title"/>
+                <ui:VisualElement class="difficulty-row">
+                    <ui:Button name="btn-easy"   text="Fácil"   class="diff-btn"/>
+                    <ui:Button name="btn-medium" text="Medio"   class="diff-btn diff-selected"/>
+                    <ui:Button name="btn-hard"   text="Difícil" class="diff-btn"/>
+                </ui:VisualElement>
+                <ui:Button name="btn-start-ai" text="▶  Comenzar" class="btn-primary"/>
+            </ui:VisualElement>
+
+            <!-- ── Online step 1: set your name ── -->
+            <ui:VisualElement name="panel-online" class="panel-sub hidden">
+                <ui:Label text="Tu perfil" class="sub-title"/>
+                <ui:TextField name="player-name-input"
+                              max-length="16"
+                              placeholder-text="¿Cómo te llamas?"
+                              class="name-field"/>
+                <ui:Button name="btn-create-room" text="Crear Sala"    class="btn-primary"/>
+                <ui:Button name="btn-show-join"   text="Unirse a Sala" class="btn-secondary"/>
+            </ui:VisualElement>
+
+            <!-- ── Waiting room (host and client after connecting) ── -->
+            <ui:VisualElement name="panel-create" class="panel-sub hidden">
+
+                <ui:Label name="room-title" text="Buscando rival..." class="sub-title"/>
+
+                <!-- Code row: shown only for host -->
+                <ui:VisualElement name="code-row" class="code-row">
+                    <ui:Label name="join-code-text" text="——————" class="join-code"/>
+                    <ui:Button name="btn-copy-code" text="Copiar" class="btn-copy"/>
+                </ui:VisualElement>
+
+                <!-- Player cards -->
+                <ui:VisualElement class="players-vs-row">
+
+                    <ui:VisualElement name="p1-room-card" class="room-card">
+                        <ui:VisualElement name="p1-room-avatar" class="room-card-avatar room-card-avatar--p1">
+                            <ui:Label name="p1-room-initial" text="?" class="avatar-initial"/>
+                        </ui:VisualElement>
+                        <ui:Label name="p1-room-name" text="" class="room-card-name"/>
+                        <ui:Label text="ANFITRIÓN" class="room-card-badge room-card-badge--host"/>
+                    </ui:VisualElement>
+
+                    <ui:Label text="VS" class="vs-label"/>
+
+                    <ui:VisualElement name="p2-room-card" class="room-card">
+                        <ui:VisualElement name="p2-room-avatar" class="room-card-avatar room-card-avatar--p2 room-card-avatar--empty">
+                            <ui:Label name="p2-room-initial" text="?" class="avatar-initial avatar-initial--dim"/>
+                        </ui:VisualElement>
+                        <ui:Label name="p2-room-name" text="Esperando..." class="room-card-name room-card-name--dim"/>
+                        <ui:Label text="RETADOR" class="room-card-badge room-card-badge--guest"/>
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <ui:Label  name="waiting-text"    text="" class="waiting-label"/>
+                <ui:Button name="btn-start-online" text="¡A jugar!" class="btn-primary hidden"/>
+
+            </ui:VisualElement>
+
+            <!-- ── Join room panel: enter code ── -->
+            <ui:VisualElement name="panel-join" class="panel-sub hidden">
+                <ui:Label text="Unirse a sala" class="sub-title"/>
+                <ui:TextField name="code-input"
+                              max-length="16"
+                              placeholder-text="Código de sala (6 letras)"
+                              class="code-input"/>
+                <ui:Button name="btn-join"   text="▶  Entrar" class="btn-primary"/>
+                <ui:Label  name="join-status" text=""         class="status-label"/>
+            </ui:VisualElement>
+
+            <!-- Shared back / error -->
+            <ui:Button name="btn-back"   text="← Volver" class="btn-back hidden"/>
+            <ui:Label  name="error-text" text=""         class="error-label hidden"/>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

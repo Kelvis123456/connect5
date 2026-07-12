@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="Connect5.uss"/>
+    <Style src="Game.uss"/>
+
+    <ui:VisualElement name="game-root" class="game-root">
+
+        <!-- ── Header ── -->
+        <ui:VisualElement name="header" class="game-header">
+            <ui:VisualElement name="p1-block" class="player-block">
+                <ui:Label name="p1-name"  text="Jugador 1" class="player-name p1-color"/>
+                <ui:Label name="p1-score" text="0"         class="player-score p1-color"/>
+            </ui:VisualElement>
+
+            <ui:Label name="turn-text" text="Turno: —" class="turn-text"/>
+
+            <ui:VisualElement name="p2-block" class="player-block p2-block">
+                <ui:Label name="p2-name"  text="Jugador 2" class="player-name p2-color"/>
+                <ui:Label name="p2-score" text="0"         class="player-score p2-color"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- ── Board area ── -->
+        <ui:VisualElement name="board-container" class="board-container">
+            <ui:VisualElement name="board-frame" class="board-frame">
+                <!-- board-inner stacks grid / col-overlay / piece-overlay -->
+                <ui:VisualElement name="board-inner" class="board-inner">
+                    <ui:VisualElement name="board-grid"      class="board-grid"/>
+                    <ui:VisualElement name="column-overlay"  class="column-overlay"/>
+                    <ui:VisualElement name="piece-overlay"   class="piece-overlay"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- ── Victory overlay (full-screen, hidden by default) ── -->
+        <ui:VisualElement name="victory-overlay" class="victory-overlay hidden">
+            <ui:VisualElement name="victory-panel" class="victory-panel">
+                <ui:Label name="vict-title"    text="¡Victoria!" class="vict-title"/>
+                <ui:Label name="vict-subtitle" text=""           class="vict-subtitle"/>
+                <ui:VisualElement class="vict-buttons">
+                    <ui:Button name="btn-play-again" text="Jugar Otra Vez" class="vict-btn-primary"/>
+                    <ui:Button name="btn-lobby"      text="← Inicio"       class="vict-btn-secondary"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>
