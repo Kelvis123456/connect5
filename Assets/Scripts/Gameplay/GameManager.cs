@@ -58,19 +58,6 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void RestartGame()
-    {
-        StopAllCoroutines();
-        StartNewGame();
-    }
-
-    public void ReturnToLobby()
-    {
-        StopAllCoroutines();
-        GameSettings.LaunchedFromMenu = false;
-        SceneManager.LoadScene("LobbyScene");
-    }
-
     // ── Internal ────────────────────────────────────────────────────────────
 
     private void StartNewGame()
