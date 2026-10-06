@@ -14,6 +14,6 @@ Fonts included in that folder, with the license file that ships next to each one
 | Roboto Bold | Apache License 2.0 |
 | Unity | SIL OFL 1.1 |
 | Liberation Sans (TextMesh Pro/Fonts) | SIL OFL 1.1 |
-| Electronic Highway Sign | license to confirm (no license file in the package) |
+| Electronic Highway Sign | Sample font from Unity's TextMesh Pro "Examples & Extras", no license file. Not used by any scene, prefab or material in this project; delete the Examples & Extras folder before a public build. |
 
 Everything else (scripts, scenes, UI) was made for this project. Networking uses Unity Netcode for GameObjects and Unity Gaming Services (Relay), pulled in through the Package Manager under Unity's own terms.
