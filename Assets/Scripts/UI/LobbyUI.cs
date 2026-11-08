@@ -158,9 +158,15 @@ public class LobbyUI : MonoBehaviour
 
     // ── Relay subscriptions ───────────────────────────────────────────────────
 
+    // OnEnable can run before RelayManager.Awake sets Instance, so Start retries.
+    private bool _relaySubscribed;
+
+    private void Start() => SubscribeRelay();
+
     private void SubscribeRelay()
     {
-        if (RelayManager.Instance == null) return;
+        if (_relaySubscribed || RelayManager.Instance == null) return;
+        _relaySubscribed = true;
         RelayManager.Instance.OnRoomCreated    += HandleRoomCreated;
         RelayManager.Instance.OnJoiningRoom    += HandleJoiningRoom;
         RelayManager.Instance.OnOpponentJoined += HandleOpponentJoined;
@@ -169,7 +175,8 @@ public class LobbyUI : MonoBehaviour
 
     private void UnsubscribeRelay()
     {
-        if (RelayManager.Instance == null) return;
+        if (!_relaySubscribed || RelayManager.Instance == null) return;
+        _relaySubscribed = false;
         RelayManager.Instance.OnRoomCreated    -= HandleRoomCreated;
         RelayManager.Instance.OnJoiningRoom    -= HandleJoiningRoom;
         RelayManager.Instance.OnOpponentJoined -= HandleOpponentJoined;

@@ -52,7 +52,11 @@ public class RelayManager : MonoBehaviour
         if (IsInitialized) return;
         try
         {
-            await UnityServices.InitializeAsync();
+            // Anonymous auth is cached per profile; one profile per process lets two
+            // instances on the same PC sign in as different players.
+            var options = new InitializationOptions()
+                .SetProfile($"p{System.Diagnostics.Process.GetCurrentProcess().Id}");
+            await UnityServices.InitializeAsync(options);
             if (!AuthenticationService.Instance.IsSignedIn)
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
             IsInitialized = true;
